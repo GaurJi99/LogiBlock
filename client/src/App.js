@@ -5,7 +5,6 @@ import Login from "./components/login";
 import "./App.css";
 
 class App extends Component {
-
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
@@ -48,7 +47,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Good to Go!</h1>
-        <Login loginadmin = {this.loginadmin}/>
+          <Login loginadmin = {this.loginadmin}/>
+        
       </div>
     );
   }

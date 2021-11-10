@@ -6,6 +6,7 @@ import CloseIcon from "@material-ui/icons/Close"
 import IconButton from "@material-ui/core/IconButton"
 import Input from "@material-ui/core/Input"
 import InputAdornment from "@material-ui/core/InputAdornment"
+import { useNavigate } from "react-router-dom"
 
 
 // toast.configure()
@@ -14,7 +15,14 @@ export default function Login({loginadmin}) {
 	
 	const [idfromlogin , setidfromlogin] = useState("")
 	const [passfromlogin , setpassfromlogin] = useState("")
+	
 
+	const history = useNavigate();
+
+	const routeChange = () => {
+		let path = `/dashboard`;
+		history(path);
+	}
 	function matchauth(){
 		console.log("matching now")
 		loginadmin().then((data)=>{
@@ -22,6 +30,7 @@ export default function Login({loginadmin}) {
 
 			if (data[0] === idfromlogin && data[1] === passfromlogin){
 				console.log("wah bete mauj kardi😜")
+				routeChange();
 			}
 			else{
 				console.log("aree dada")
@@ -56,7 +65,6 @@ export default function Login({loginadmin}) {
 								className='font-regular form-control my-2'
 								placeholder='User ID'
 								onChange={(e) => {
-									console.log(e.target.value)
 									setidfromlogin(e.target.value)
 								}}
 							/>
