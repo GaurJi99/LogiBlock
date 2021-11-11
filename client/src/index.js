@@ -4,19 +4,25 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { render } from "react-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
 import Login from './components/login';
+import Dashboard from './components/dashboard';
+import AddItem from './components/dashboard/additem-component';
+import AddCatg from './components/dashboard/addcatg-component';
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
 <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/add-item" element={<AddItem />} />
+      <Route path="/dashboard/add-catg" element={<AddCatg />} />
     </Routes>
   </BrowserRouter>,
   rootElement
