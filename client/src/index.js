@@ -10,13 +10,14 @@ import {
   Route
 } from "react-router-dom";
 import Login from './components/login';
+import Tests from './components/Tests';
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
 <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/tests" element={<Tests />} />
     </Routes>
   </BrowserRouter>,
   rootElement
