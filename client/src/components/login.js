@@ -37,9 +37,9 @@ export default function Login({loginadmin}) {
 			}
 
 		});
-		
-
 	}
+
+	
 	
 		return (
 			<div className='jumbotron-fluid h-100' data-component='login'>
