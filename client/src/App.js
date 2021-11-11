@@ -1,7 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
-import getWeb3 from "./getWeb3";
+import React, { Component } from "react";
+import { useState,useEffect } from "react";
 import Login from "./components/login";
+import Tests from "./components/Tests";
 import "./App.css";
 import PropTypes from 'prop-types';
 import { init } from "./web3client";
