@@ -1,15 +1,11 @@
 import React from 'react'
-import {Doughnut} from 'react-chartjs-2'
+import { Doughnut } from 'react-chartjs-2'
 const DonoughtChart = () => {
-    return(
-        <div>
-        <h3>Here's Your Donought Chart</h3>
-        <div class="chart-container">
-
-            
-           <Doughnut
-           
-           data = {{
+  return (
+    <div className="container-fluid chartcontainer p-0 m-0">
+      <div class="chart-container">
+        <Doughnut
+          data={{
             datasets: [{
               label: 'My First Dataset',
               data: [300, 50, 100, 75],
@@ -22,29 +18,30 @@ const DonoughtChart = () => {
               hoverOffset: 4
             }],
             labels: [
-                'Red',
-                'Blue',
-                'Yellow',
-                'Others'
-              ]
+              'Red',
+              'Blue',
+              'Yellow',
+              'Others'
+            ]
           }}
-        
-           height={250}
-           width={250}
-           options={{
-               maintainAspectRatio: false
-           }}
-        
-           
-           />
-            
-        </div>
-        </div>
+
+          height={250}
+          width={250}
+          options={{
+            maintainAspectRatio: false
+          }}
+
+
+        />
+
+      </div>
+      <div className="text-center mt-5 textwritten">Current Inventory Items</div>
+    </div>
 
 
 
 
-    )
+  )
 
 
 }

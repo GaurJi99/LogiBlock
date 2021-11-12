@@ -11,8 +11,8 @@ import DonoughtChart from "../Donought"
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-export default function AddCatg() {
-    const [catg, setcatg] = useState("")
+export default function AddQnty() {
+    const [qnty, setqnty] = useState("")
 
     const history = useNavigate();
 
@@ -32,13 +32,13 @@ export default function AddCatg() {
                                 <div className="container-fluid">
                                     <div className="row justify-content-center align-items-center text-center addcatgrow">
                                         <div className="catgheading">
-                                            Category Name
+                                            QUANTITY
                                         </div>
                                         <Input
                                             type='id'
                                             className='form-control inputformat inputcatg'
                                             onChange={(e) => {
-                                                setcatg(e.target.value)
+                                                setqnty(e.target.value)
                                             }}
                                         />
                                     </div>
