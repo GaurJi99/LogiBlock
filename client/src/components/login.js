@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Visibility from "@material-ui/icons/Visibility"
 import VisibilityOff from "@material-ui/icons/VisibilityOff"
 import CloseIcon from "@material-ui/icons/Close"
@@ -7,15 +7,20 @@ import IconButton from "@material-ui/core/IconButton"
 import Input from "@material-ui/core/Input"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import { useNavigate } from "react-router-dom"
+import SimpleStorageContract from "../contracts/SimpleStorage.json";
+import getWeb3 from "../getWeb3";
+import { loginadmin } from "../web3client";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify"
+import "../Components.css"
 
+toast.configure()
 
-// toast.configure()
+export default function Login() {
 
-export default function Login({loginadmin}) {
-	
-	const [idfromlogin , setidfromlogin] = useState("")
-	const [passfromlogin , setpassfromlogin] = useState("")
-	
+	const [idfromlogin, setidfromlogin] = useState("")
+	const [passfromlogin, setpassfromlogin] = useState("")
+	const [showpassword, setshowpassword] = useState(false)
 
 	const history = useNavigate();
 
@@ -23,87 +28,91 @@ export default function Login({loginadmin}) {
 		let path = `/dashboard`;
 		history(path);
 	}
-	function matchauth(){
+	function matchauth() {
 		console.log("matching now")
-		loginadmin().then((data)=>{
+		if (!validateID()) return
+		if (!validatePassword()) return
+		loginadmin().then((data) => {
 			console.log(data)
 
-			if (data[0] === idfromlogin && data[1] === passfromlogin){
+			if (data[0] === idfromlogin && data[1] === passfromlogin) {
 				console.log("wah bete mauj kardi😜")
+				toast.success("Logged in successfully!!")
 				routeChange();
 			}
-			else{
+			else {
 				console.log("aree dada")
+				toast.error("Invalid Credentials!!")
 			}
-
 		});
 	}
 
-	
-	
-		return (
-			<div className='jumbotron-fluid h-100' data-component='login'>
-				<div className='column h-100 text-center'>
-					<div
-						className='position-absolute d-block end-0 m-3 font-color-gray z-top'
-						role='button'>
-						<CloseIcon />
-						
-					</div>
-					<div className='col-md-12 d-flex h-20'>
-						<img
-							className='mx-auto my-auto d-block logoimg'
-							src='/icons/logo-1.svg'
-							alt=''
-						/>
-					</div>
-					<div className='col-md-12' style={{height: '71vh'}}>
-						<div className='d-block'>Login to Enterprise Account</div>
-						<form className='mx-auto w-55'>
+	function validateID() {
+		if (idfromlogin === "") {
+			toast.warning("Please enter the User ID")
+			return false
+		}
+		return true
+	}
+	function validatePassword() {
+		if (passfromlogin === "") {
+			toast.warning("Please enter the password")
+			return false
+		}
+		return true
+	}
+
+	return (
+		<div className="logincomponent">
+			<div className='container-fluid'>
+				<div className='row justify-content-center my-auto text-center'>
+					<div className='col-xl-4 col-lg-5 col-md-6 col-sm-9 col-12 formcol'>
+						<div className='loginheading mb-4'>Login</div>
+						<form className=''>
 							<Input
 								type='id'
-								className='font-regular form-control my-2'
+								className='form-control mb-4 inputformat'
 								placeholder='User ID'
 								onChange={(e) => {
 									setidfromlogin(e.target.value)
 								}}
 							/>
 							<Input
-								className='font-regular form-control my-2'
+								className='form-control mb-4 inputformat'
 								placeholder='Password'
 								id='standard-adornment-password'
+								type={showpassword ? "text" : "password"}
 								onChange={(e) => {
 									setpassfromlogin(e.target.value)
 								}}
-								// endAdornment={
-								// 	<InputAdornment position='end'>
-								// 		<IconButton
-								// 			aria-label='toggle password visibility'
-								// 			onClick={(e) => {
-								// 				this.setState({
-								// 					showPassword: !this.state.showPassword,
-								// 				})
-								// 			}}>
-								// 			{this.state.showPassword ? (
-								// 				<Visibility className='font-regular' />
-								// 			) : (
-								// 				<VisibilityOff className='font-regular' />
-								// 			)}
-								// 		</IconButton>
-								// 	</InputAdornment>
-								// }
+								endAdornment={
+									<InputAdornment position='end'>
+										<IconButton
+											aria-label='toggle password visibility'
+											onClick={(e) => {
+												setshowpassword(!showpassword)
+											}}>
+											{showpassword ? (
+												<Visibility className='font-regular' />
+											) : (
+												<VisibilityOff className='font-regular' />
+											)}
+										</IconButton>
+									</InputAdornment>
+								}
 							/>
 							<button
-								className='btn btn-primary mt-3 w-100'
+								className='btn btn-primary btnlogin mt-5 w-100 text-dark'
 								type='button'
 								onClick={(e) => {
 									matchauth();
 								}}>
-								Login
+								LOGIN
 							</button>
 						</form>
 					</div>
 				</div>
 			</div>
-		)
-							}
+		</div>
+	)
+}

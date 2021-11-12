@@ -3,22 +3,22 @@ import { useState,useEffect } from "react";
 import Login from "./components/login";
 import Tests from "./components/Tests";
 import "./App.css";
+import PropTypes from 'prop-types';
 import { init } from "./web3client";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
-function App(){
-  
-
-
-
+function App() {
+  useEffect(() => {
+    init();
+  }, [])
 
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-          {/* <Login loginadmin = {this.loginadmin}/> */}
-          <Tests />
-        
+          <Login/>
       </div>
     );
-  }
+}
 
 export default App;

@@ -36,6 +36,16 @@ export const init = async () => {
 	);
     isInitialized = true;
 }
+
+export const  loginadmin = async () => {
+    if ( !isInitialized) {
+        await init(); 
+    }
+		
+    // Get the value from the contract to prove it worked.
+    return simple.methods.readauth().call();
+}
+
 export const getallitems = async () => {
     if ( !isInitialized) {
         await init(); 
@@ -44,3 +54,4 @@ export const getallitems = async () => {
     return simple.methods.get(16).call();
 
 };
+
