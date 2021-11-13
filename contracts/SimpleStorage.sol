@@ -9,6 +9,7 @@ contract SimpleStorage {
     uint pid;
     string pname;
     uint qty;
+    string catg;
   }
 
   struct Auth{
@@ -16,10 +17,7 @@ contract SimpleStorage {
     string pass;
   }
 
-
-  mapping(uint => Item) public idmap;
-
-  uint [] public allitems;
+  Item [] public allitems;
 
   string [] public allcat;
   Item item;
@@ -28,10 +26,9 @@ contract SimpleStorage {
   event itemadded(
     uint pid,
     string pname,
-    uint qty
+    uint qty,
+    string catg
   );
-
-  mapping(uint => string) public pid_to_cat;
 
 
   function addcategory(string memory _cat) public {
@@ -40,10 +37,13 @@ contract SimpleStorage {
   }
 
   function fetchallcat() public view returns(string[] memory ) {
-
     return allcat;
-
   }
+
+  function fetchallitems() public view returns(Item [] memory){
+    return allitems;
+  }
+
 
   function readauth() pure public returns(Auth memory a) {
     Auth memory auth1;
@@ -57,23 +57,10 @@ contract SimpleStorage {
     require(bytes(_pname).length > 0);
     require(_qty > 0);
 
-    item = Item(_pid,_pname,_qty);
-    allitems.push(_pid);
-    idmap[_pid] = item;
-    pid_to_cat[_pid] = _catg;
+    item = Item(_pid,_pname,_qty,_catg);
+    allitems.push(item);
 
-    emit itemadded(_pid, _pname, _qty);
+    emit itemadded(_pid, _pname, _qty,_catg);
   }
 
-  function get(uint proid) public view returns (string memory categoryofpid,string memory pnameofpid) {
-    for (uint i=0;i< allitems.length;i++){
-      if ( proid == allitems[i]){
-        Item memory curritem;
-        curritem = idmap[proid];
-        string memory mapres;
-        mapres = pid_to_cat[proid];
-        return (mapres,curritem.pname);
-      }
-    }
-  }
 }

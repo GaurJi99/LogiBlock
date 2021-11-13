@@ -10,16 +10,59 @@ import "../../Components.css"
 import DonoughtChart from "../Donought"
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import CancelIcon from '@material-ui/icons/Cancel';
+import { addcat ,getallcat } from "../../web3client"
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify"
+
+toast.configure()
 
 export default function AddCatg() {
     const [catg, setcatg] = useState("")
+    const [allcat,setallcat] = useState([])
 
+
+    
     const history = useNavigate();
+    useEffect(()=>{
+        getallcat().then((data) => {
+            setallcat(data)
+        }).catch((err)=>{
+            console.log("Error is " + err)
+        })
+    },[])
+    
 
     const routeChange = () => {
         let path = `/dashboard`;
         history(path);
     }
+
+    
+
+    function validatecatg() {
+		if (catg === "") {
+			toast.warning("Cannot add empty category🤢")
+			return false
+		}
+		return true
+	}
+
+    
+
+    function add_cat() {
+        if (!validatecatg()) return
+        if(allcat.includes(catg)){
+            toast.error("ZYADA SHAN PATI NAI")
+        }
+        else{
+            addcat(catg).then((data) => {
+               console.log(data)
+            });
+            toast.success(catg+" added successfully😁")
+        }
+	}
+
+
     return (
 
         <>
@@ -45,7 +88,7 @@ export default function AddCatg() {
                                     <div className="row addcancelbtns">
                                         <div className="">
                                             <button className="btn btncanceladd btn-danger float-end" onClick={(e) => { routeChange() }}><span><CancelIcon />&nbsp;Cancel</span></button>
-                                            <button className="btn btncanceladd btn-success float-end mx-3"><span><ControlPointIcon />&nbsp;Add</span></button>
+                                            <button className="btn btncanceladd btn-success float-end mx-3" onClick={(e) => { add_cat() }} ><span><ControlPointIcon />&nbsp;Add</span></button>
                                         </div>
                                     </div>
                                 </div>

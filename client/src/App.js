@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { useState,useEffect } from "react";
 import Login from "./components/login";
-import Tests from "./components/Tests";
 import "./App.css";
 import PropTypes from 'prop-types';
 import { init } from "./web3client";
@@ -22,3 +21,4 @@ function App() {
 }
 
 export default App;
+
