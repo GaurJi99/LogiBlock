@@ -46,12 +46,28 @@ export const  loginadmin = async () => {
     return simple.methods.readauth().call();
 }
 
-export const getallitems = async () => {
-    if ( !isInitialized) {
-        await init(); 
-    }
+export const addcat = async (cat) =>{
 
-    return simple.methods.get(16).call();
+	simple.methods.addcategory(cat).send({from : selectedAccount})
+}
 
-};
+export const getallcat = async () => {
+	const res = await simple.methods.fetchallcat().call();
+	return res;
+
+}
+
+export const setitem = async (pid,pname,qty,catg) => {
+	simple.methods.set(pid,pname,qty,catg).send({from : selectedAccount});
+}
+
+export const getitems = async () => {
+	const res = await simple.methods.fetchallitems().call();
+	return res;
+}
+
+
+
+
+
 

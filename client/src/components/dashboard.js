@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react"
 import Header from "./dashboard/header-component"
 import DonoughtChart from "../components/Donought"
-import { loginadmin } from "../web3client"
+import { loginadmin,getitems} from "../web3client"
 import { useNavigate } from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify"
@@ -11,35 +11,42 @@ toast.configure()
 
 export default function Dashboard() {
     const [name, setname] = useState("");
-    function getname() {
-        console.log("matching now")
+    const [allitems,setallitems] = useState([])
+
+    useEffect(()=>{
         loginadmin().then((data) => {
             console.log(data)
             setname(data[0])
-
         });
+        getitems().then((data)=>{
+            setallitems(data)
+        })
+    },[])
+
+
+    function searchitem(catgegory){
+        allitems.forEach(comparefunc)
+
+        function comparefunc(v){
+
+            if (v.catg === catgegory){
+                console.log("wah!!😁")
+            }
+        }
     }
-    getname();
-    const history = useNavigate();
-    const routeChange = () => {
-        let path = `/`;
-        history(path);
-    }
+    console.log(allitems);
+
     return(
-        <>
-        {name? (
         <>
         <Header/>
         <div className="chartrowdashboard overflow-hidden">
         <DonoughtChart/>
         </div>
-        
-        </>
-        ): 
-        (
-        routeChange()
-        )
-        }
+
+        <div>
+        <button className="btn btncanceladd btn-danger float-end" onClick={()=>searchitem("fam")}>Hey</button>
+
+        </div>
         </>
     )
 }

@@ -53,7 +53,7 @@
   "sourceMap": "70:270:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:270:0;;;;;;;",
   "deployedSourceMap": "70:270:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:270:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;120:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;95:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;232:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;232:105:0;;;;;;;;;;;;;;;;;:::i;:::-;;120:36;;;;:::o;95:20::-;;;;;;;;;;;;;:::o;232:105::-;210:5;;;;;;;;;;;196:19;;:10;:19;;;192:26;;;322:9;295:24;:36;;;;192:26;232:105;:::o",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <0.8.13;\r\n\r\ncontract Migrations {\r\n  address public owner;\r\n  uint public last_completed_migration;\r\n\r\n  modifier restricted() {\r\n    if (msg.sender == owner) _;\r\n  }\r\n\r\n\r\n  function setCompleted(uint completed) public restricted {\r\n    last_completed_migration = completed;\r\n  }\r\n}\r\n",
-  "sourcePath": "D:\\LogiBlock_latest\\LogiBlock\\contracts\\Migrations.sol",
+  "sourcePath": "E:\\build\\LogiBlock\\contracts\\Migrations.sol",
   "ast": {
     "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -170,7 +170,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 250,
+                        "referencedDeclaration": 192,
                         "src": "196:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -525,7 +525,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 250,
+                                  "referencedDeclaration": 192,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -739,12 +739,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x0438eB3b915023cFce7e81678841225bD812dF11",
-      "transactionHash": "0xe7351004646510573b24cbb00796e11d909f85042b85bcb04a1650c162cfa968"
+      "address": "0x6CAB258451034DdA20B41783C56ff86B675d8451",
+      "transactionHash": "0xb570ca07ad6be46c7d40fca09fac3cce084b0ec500b8c8ce523d9c3a7f835d25"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-12T08:43:13.892Z",
+  "updatedAt": "2021-11-13T00:46:49.931Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

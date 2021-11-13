@@ -3,21 +3,33 @@ import InputLabel from "@material-ui/core/InputLabel"
 import MenuItem from "@material-ui/core/MenuItem"
 import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
-import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom"
-import SimpleStorageContract from "../../contracts/SimpleStorage.json";
-import getWeb3 from "../../getWeb3";
-import App from "../../App"
-import { loginadmin } from "../../web3client"
+import { getallcat, loginadmin } from "../../web3client"
 import { logo } from "../../images/logo192.png"
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 export default function Header() {
     const [idfromlogin, setidfromlogin] = useState()
     const [passfromlogin, setpassfromlogin] = useState()
+    const [allcat,setallcat] = useState([])
 
     const [category, setCategory] = useState("")
     const history = useNavigate();
+
+    useEffect(()=>{
+        loginadmin().then((data) => {
+            console.log(data)
+            setname(data[0])
+
+        });
+        
+        
+        getallcat().then((data) => {
+            setallcat(data)
+        });
+
+    },[])
+
 
     const routeChange1 = () => {
         let path = `/dashboard/add-item`;
@@ -34,15 +46,11 @@ export default function Header() {
         history(path);
     }
     const [name, setname] = useState("");
-    function getname() {
-        console.log("matching now")
-        loginadmin().then((data) => {
-            console.log(data)
-            setname(data[0])
+    
+    
 
-        });
-    }
-    getname();
+
+
 
 
     return (
@@ -86,10 +94,10 @@ export default function Header() {
                                     onChange={(e) => {
                                         setCategory(e.target.value)
                                     }}>
-                                    {/* {educationData?.branches &&
-                        educationData?.branches.map((col) => {
-                            return <MenuItem className='educationdetails' value={col.id}>{col.name}</MenuItem>
-                        })} */}
+                                    {
+                        allcat.map((catg) => {
+                            return <MenuItem className='catall' value={catg}>{catg}</MenuItem>
+                        })}
                                 </Select>
                             </FormControl>
                         </div>

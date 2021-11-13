@@ -15,7 +15,6 @@ import Dashboard from './components/dashboard';
 import AddItem from './components/dashboard/additem-component';
 import AddCatg from './components/dashboard/addcatg-component';
 import AddQnty from './components/dashboard/addqnty-components';
-import Tests from './components/Tests';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
@@ -29,7 +28,6 @@ ReactDOM.render(
       <Route path="/dashboard/add-item" element={<AddItem />} />
       <Route path="/dashboard/add-catg" element={<AddCatg />} />
       <Route path="/dashboard/add-qnty" element={<AddQnty />} />
-      <Route path="/tests" element={<Tests />} />
     </Routes>
   </BrowserRouter>,
   rootElement
