@@ -111,6 +111,13 @@
 .additemcomponent .inputcatg {
     width: 430px;
 }
+.modalcomponent {
+    width: 300px;
+    border: 2px solid #9e8977;
+    background-color: #9e8977;
+    justify-content: center;
+    float: right;
+}
 @media screen and (max-width: 576px) {
     .additem {
         padding: 3% 0 15px 0;

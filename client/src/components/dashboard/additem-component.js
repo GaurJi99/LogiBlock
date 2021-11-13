@@ -11,12 +11,13 @@ import DonoughtChart from "../Donought"
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { toast } from "react-toastify"
-import { getallcat,setitem,getitems} from "../../web3client"
+import { getallcat,setitem,getitems, init} from "../../web3client"
 
 
 toast.configure()
 
 export default function AddItem() {
+
     const [proid, setproid] = useState(null)
     const [proname, setproname] = useState("")
     const [catg, setcatg] = useState("")
@@ -35,23 +36,39 @@ export default function AddItem() {
 
 
     },[])
-
+    let arr = [];
+    allitems.map((e)=> {
+        arr.push(e.pid)
+    })
+    console.log(arr)
     function add_item() {
         if (!validateproid()) return
         if (!validateproname()) return
         if (!validatecatg()) return
         if (!validateqnty()) return
-        let a = proid.toString();
-        if(allitems[0].pid.includes(a)){
-            toast.error("ZYADA SHAN PATI NAI")
-        }
-        else{
-
+        
+        if(allitems.length===0){
             setitem(proid,proname,qnty,catg).then((data) => {
-               console.log(data)
-               toast.success("item " +proname +" added successfully😁")
-            });
+                console.log(data)
+                toast.success("item " +proname +" added successfully😁")
+             });
+             
+            
         }
+        if(allitems.length!==0){
+            let a = proid.toString();
+            if(arr.includes(a)){
+                toast.error("ZYADA SHAN PATI NAI")
+            }
+            else{
+                setitem(proid,proname,qnty,catg).then((data) => {
+                   console.log(data)
+                   toast.success("item " +proname +" added successfully😁")
+                });
+                
+            }
+        }
+        
 	}
     
     const history = useNavigate();
@@ -153,7 +170,7 @@ export default function AddItem() {
                                     <div className="row addcancelbtns">
                                         <div className="">
                                             <button className="btn btncanceladd btn-danger float-end" onClick={(e) => { routeChange() }}><span><CancelIcon/>&nbsp;Cancel</span></button>
-                                            <button className="btn btncanceladd btn-success float-end mx-3" onClick={(e) => { add_item() }}><span><ControlPointIcon/>&nbsp;Add</span></button>
+                                            <button className="btn btncanceladd btn-success float-end mx-3" onClick={(e) => { add_item()}}><span><ControlPointIcon/>&nbsp;Add</span></button>
                                         </div>
                                     </div>
                                 </div>

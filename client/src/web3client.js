@@ -47,26 +47,52 @@ export const  loginadmin = async () => {
 }
 
 export const addcat = async (cat) =>{
+	if ( !isInitialized) {
+        await init(); 
+    }
 
 	simple.methods.addcategory(cat).send({from : selectedAccount})
 }
 
 export const getallcat = async () => {
+	if ( !isInitialized) {
+        await init(); 
+    }
 	const res = await simple.methods.fetchallcat().call();
 	return res;
 
 }
 
 export const setitem = async (pid,pname,qty,catg) => {
+	if ( !isInitialized) {
+        await init(); 
+    }
 	simple.methods.set(pid,pname,qty,catg).send({from : selectedAccount});
 }
 
 export const getitems = async () => {
+	if ( !isInitialized) {
+        await init(); 
+    }
 	const res = await simple.methods.fetchallitems().call();
 	return res;
 }
 
+export const rmv = async (ind) => {
+	if ( !isInitialized) {
+        await init(); 
+    }
+	const res = await simple.methods.remove(ind).send({from : selectedAccount});
+	return res;
+}
 
+export const edititem = async (ind,qnty) => {
+	if ( !isInitialized) {
+        await init(); 
+    }
+	const res = await simple.methods.edit(ind,qnty).send({from : selectedAccount});
+	return res;
+}
 
 
 

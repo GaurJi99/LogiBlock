@@ -63,4 +63,18 @@ contract SimpleStorage {
     emit itemadded(_pid, _pname, _qty,_catg);
   }
 
+  function remove(uint256 index) public {
+        if (index >= allitems.length) return;
+
+        for (uint256 i = index; i < allitems.length - 1; i++) {
+            allitems[i] = allitems[i + 1];
+        }
+        allitems.pop();
+    }
+
+    function edit(uint256 index, uint256 qnty) public {
+        if (index >= allitems.length) return;
+
+        allitems[index].qty = qnty;
+    }
 }

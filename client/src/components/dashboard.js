@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react"
 import Header from "./dashboard/header-component"
 import DonoughtChart from "../components/Donought"
-import { loginadmin,getitems} from "../web3client"
+import { loginadmin,getitems,init} from "../web3client"
 import { useNavigate } from "react-router-dom"
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify"
