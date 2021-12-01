@@ -51,8 +51,6 @@ MetaMask is a software cryptocurrency wallet used to interact with the Ethereum 
 * Step 7 : You can now manage inventory securely and efficiently.
 
 
-### Presentation Exaplaining Approach: https://docs.google.com/presentation/d/1lDT_jAUXJ3bQyI5OERfkOBIhVLHr1gxeo_t4C8-r8cc/edit?usp=sharing
 
-*(SNAPSHOTS OF THE APPLICATION ARE ATTACHED IN THE PRESENTATION)*
 
 
